@@ -67,6 +67,7 @@
                                     company-gtags
                                     company-dabbrev)))
 
+(nyan-mode 1)
 (after! nyan-mode
   (setq nyan-animate-nyancat t))
 
