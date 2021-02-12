@@ -65,7 +65,12 @@
 (after! cc-mode
   (set-company-backend! 'c++-mode '(:separate company-dabbrev-code
                                     company-gtags
-                                    company-dabbrev)))
+                                    company-dabbrev))
+  (setq! c-default-style
+        '((java-mode . "java")
+          (c++-mode  . "stroustrup")))
+  (setq! c-basic-offset 2
+         ))
 
 (nyan-mode 1)
 (after! nyan-mode
