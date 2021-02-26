@@ -57,20 +57,24 @@
 
 (put 'projectile-ripgrep 'disabled nil)
 
+
+(setq-default c-basic-offset 2)
+(setq-default tab-width 2)
+
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (ggtags-mode 1))))
+              (ggtags-mode 1)
+              (setq c-basic-offset 2)
+              (setq tab-width 2))))
 
 (after! cc-mode
   (set-company-backend! 'c++-mode '(:separate company-dabbrev-code
                                     company-gtags
                                     company-dabbrev))
   (setq! c-default-style
-        '((java-mode . "java")
-          (c++-mode  . "stroustrup")))
-  (setq! c-basic-offset 2
-         ))
+         '((java-mode . "java")
+           (c++-mode  . "stroustrup"))))
 
 (nyan-mode 1)
 (after! nyan-mode
