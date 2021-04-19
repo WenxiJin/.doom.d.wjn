@@ -64,6 +64,7 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (message "WJN: c mode hooks applied")
               (ggtags-mode 1)
               (setq c-basic-offset 2)
               (setq tab-width 2))))
