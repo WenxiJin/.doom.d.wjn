@@ -65,7 +65,7 @@
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
               (message "WJN: c mode hooks applied")
-              (ggtags-mode 1)
+              ;; (ggtags-mode 1)
               (setq c-basic-offset 2)
               (setq tab-width 2))))
 
@@ -94,3 +94,8 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; C#
+(add-to-list 'auto-mode-alist '("\\.xaml\\'" . nxml-mode))
+(add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml"))
+(add-to-list 'projectile-other-file-alist '("xaml" "xaml.cs"))
