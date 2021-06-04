@@ -96,6 +96,7 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;; C#
-(add-to-list 'auto-mode-alist '("\\.xaml\\'" . nxml-mode))
+(setq auto-mode-alist (append '(("\\.xaml" . nxml-mode)) auto-mode-alist))
+
 (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml"))
 (add-to-list 'projectile-other-file-alist '("xaml" "xaml.cs"))
