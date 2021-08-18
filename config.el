@@ -53,14 +53,18 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+
 (map! "C-c j" #'avy-goto-char-2)
-
-(put 'projectile-ripgrep 'disabled nil)
-
-
 (setq-default c-basic-offset 2)
 (setq-default tab-width 2)
+(use-package! nyan-mode
+  :init
+  (nyan-mode 1)
+  :config
+  (setq nyan-animate-nyancat t))
 
+
+;; c/c++, java
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
@@ -75,29 +79,38 @@
                                     company-dabbrev))
   (setq! c-default-style
          '((java-mode . "java")
-           (c++-mode  . "stroustrup"))))
+           (c++-mode  . "google-c-style"))))
 
-(nyan-mode 1)
-(after! nyan-mode
-  (setq nyan-animate-nyancat t))
+(use-package! google-c-style
+  :config
+  (add-hook 'c-mode-common-hook 'google-set-c-style)
+  (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+  (setq-default c-basic-offset 2
+                tab-width 2))
 
-;; Windows performance tweaks
-;;
+;; irony
 (when (boundp 'w32-pipe-read-delay)
   (setq w32-pipe-read-delay 0))
 ;; Set the buffer size to 64K on Windows (from the original 4K)
 (when (boundp 'w32-pipe-buffer-size)
   (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
 
+;; C#
+(use-package! tree-sitter :ensure t)
+(use-package! tree-sitter-langs :ensure t)
+
+(use-package! csharp-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
+(setq auto-mode-alist (append '(("\\.xaml$" . nxml-mode)) auto-mode-alist))
+(add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml" "cs"))
+(add-to-list 'projectile-other-file-alist '("xaml" "cs" "xaml.cs"))
+(add-to-list 'projectile-other-file-alist '("cs" "xaml.cs" "xaml"))
+
+
 ;; Multiple-cursors
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;; C#
-(setq auto-mode-alist (append '(("\\.xaml$" . nxml-mode)) auto-mode-alist))
-
-(add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml" "cs"))
-(add-to-list 'projectile-other-file-alist '("xaml" "cs" "xaml.cs"))
-(add-to-list 'projectile-other-file-alist '("cs" "xaml.cs" "xaml"))
