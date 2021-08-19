@@ -107,6 +107,8 @@
 (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml" "cs"))
 (add-to-list 'projectile-other-file-alist '("xaml" "cs" "xaml.cs"))
 (add-to-list 'projectile-other-file-alist '("cs" "xaml.cs" "xaml"))
+(add-to-list 'projectile-other-file-alist '("cs" "Designer.cs"))
+(add-to-list 'projectile-other-file-alist '("Designer.cs" "cs"))
 
 
 ;; Multiple-cursors
