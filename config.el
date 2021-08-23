@@ -96,13 +96,6 @@
   (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
 
 ;; C#
-(use-package! tree-sitter :ensure t)
-(use-package! tree-sitter-langs :ensure t)
-
-(use-package! csharp-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
 (setq auto-mode-alist (append '(("\\.xaml$" . nxml-mode)) auto-mode-alist))
 (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml" "cs"))
 (add-to-list 'projectile-other-file-alist '("xaml" "cs" "xaml.cs"))
