@@ -65,28 +65,23 @@
 
 
 ;; c/c++, java
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
-              (message "WJN: c mode hooks applied")
-              ;; (ggtags-mode 1)
-              (setq c-basic-offset 2)
-              (setq tab-width 2))))
-
-(after! cc-mode
-  (set-company-backend! 'c++-mode '(:separate company-dabbrev-code
-                                    company-gtags
-                                    company-dabbrev))
-  (setq! c-default-style
-         '((java-mode . "java")
-           (c++-mode  . "google-c-style"))))
+;; NOTE: Mine first, google-c-style after
+(defun my-c-mode-hook ()
+  (c-set-offset 'innamespace [2])
+  (setq c-basic-offset 2
+        tab-width 2))
+(add-hook 'c-mode-common-hook 'my-c-mode-hook)
 
 (use-package! google-c-style
   :config
   (add-hook 'c-mode-common-hook 'google-set-c-style)
   (add-hook 'c-mode-common-hook 'google-make-newline-indent)
-  (setq-default c-basic-offset 2
-                tab-width 2))
+  )
+
+(after! cc-mode
+  (set-company-backend! 'c++-mode '(:separate company-dabbrev-code
+                                    company-gtags
+                                    company-dabbrev)))
 
 ;; irony
 (when (boundp 'w32-pipe-read-delay)
