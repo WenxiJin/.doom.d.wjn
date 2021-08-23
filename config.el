@@ -55,8 +55,7 @@
 
 
 (map! "C-c j" #'avy-goto-char-2)
-(setq-default c-basic-offset 2)
-(setq-default tab-width 2)
+
 (use-package! nyan-mode
   :init
   (nyan-mode 1)
@@ -69,7 +68,13 @@
 (defun my-c-mode-hook ()
   (c-set-offset 'innamespace [2])
   (setq c-basic-offset 2
-        tab-width 2))
+        tab-width 2)
+  (whitespace-mode 1)
+  (setq whitespace-style
+                (quote (face trailing tab tab-mark lines-tail)))
+  (setq spacemacs-show-trailing-whitespace nil)
+  )
+
 (add-hook 'c-mode-common-hook 'my-c-mode-hook)
 
 (use-package! google-c-style
@@ -89,6 +94,15 @@
 ;; Set the buffer size to 64K on Windows (from the original 4K)
 (when (boundp 'w32-pipe-buffer-size)
   (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
+
+;; java
+(add-hook 'java-mode-hook
+          (lambda ()
+            (setq c-basic-offset 4
+                  tab-width 4
+                  fill-column 100)
+            (message "WJN: personal java mode hook applied")
+            ))
 
 ;; C#
 (setq auto-mode-alist (append '(("\\.xaml$" . nxml-mode)) auto-mode-alist))
