@@ -100,7 +100,9 @@
           (lambda ()
             (setq c-basic-offset 4
                   tab-width 4
+                  indent-tabs-mode 1
                   fill-column 100)
+            (whitespace-mode 0)
             (message "WJN: personal java mode hook applied")
             ))
 
