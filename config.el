@@ -63,6 +63,16 @@
   (setq nyan-animate-nyancat t))
 
 
+ (c-add-style "microsoft"
+              '("stroustrup"
+                (c-offsets-alist
+                 (innamespace . -)
+                 (inline-open . 0)
+                 (inher-cont . c-lineup-multi-inher)
+                 (arglist-cont-nonempty . +)
+                 (template-args-cont . +))))
+ (setq c-default-style "microsoft")
+
 ;; c/c++, java
 ;; NOTE: Mine first, google-c-style after
 (defun my-c-mode-hook ()
