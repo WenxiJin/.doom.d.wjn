@@ -67,6 +67,7 @@
 ;; NOTE: Mine first, google-c-style after
 (defun my-c-mode-hook ()
   (c-set-offset 'innamespace [2])
+  (c-set-offset 'access-label '-)
   (setq c-basic-offset 2
         tab-width 2)
   (whitespace-mode 1)
