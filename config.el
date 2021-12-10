@@ -95,10 +95,10 @@
   (add-hook 'c-mode-common-hook 'google-make-newline-indent)
   )
 
-(after! cc-mode
-  (set-company-backend! 'c++-mode '(:separate company-dabbrev-code
-                                    company-gtags
-                                    company-dabbrev)))
+;; (after! cc-mode
+;;   (set-company-backend! 'c++-mode '(:separate company-dabbrev-code
+;;                                     company-gtags
+;;                                     company-dabbrev)))
 
 ;; irony
 (when (boundp 'w32-pipe-read-delay)
