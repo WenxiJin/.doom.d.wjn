@@ -120,6 +120,7 @@
 
 ;; C#
 (setq auto-mode-alist (append '(("\\.xaml$" . nxml-mode)) auto-mode-alist))
+(setq auto-mode-alist (append '(("\\.jobdsl$" . groovy-mode)) auto-mode-alist))
 (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml" "cs"))
 (add-to-list 'projectile-other-file-alist '("xaml" "cs" "xaml.cs"))
 (add-to-list 'projectile-other-file-alist '("cs" "xaml.cs" "xaml"))
@@ -132,3 +133,15 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(add-hook 'lsp-mode-hook
+          (lambda()
+            (setq lsp-ui-sideline-show-code-actions nil)
+            (setq lsp-enable-file-watchers nil)))
+
+(after! undo-tree
+  (setq undo-tree-auto-save-history nil))
+
+(after! browse-url
+ (unless (version< emacs-version "28.2")
+     (add-to-list 'browse-url-handlers '("." . browse-url-default-browser))))
