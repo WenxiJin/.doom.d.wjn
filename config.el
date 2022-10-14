@@ -81,7 +81,7 @@
   (c-set-offset 'arglist-cont-nonempty '+)
   (setq c-basic-offset 2
         tab-width 2)
-  (whitespace-mode 1)
+  ;; (whitespace-mode 1)
   (setq whitespace-style
                 (quote (face trailing tab tab-mark lines-tail)))
   (setq spacemacs-show-trailing-whitespace nil)
@@ -145,3 +145,6 @@
 (after! browse-url
  (unless (version< emacs-version "28.2")
      (add-to-list 'browse-url-handlers '("." . browse-url-default-browser))))
+
+(after! vertico
+  (setq consult-line-start-from-top t))
