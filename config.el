@@ -142,6 +142,9 @@
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
 
+;; Windows, invokes "start /path/to/file.java"
+;; Linux, invokes "xdg-open /path/to/file.java", needs package "libfuse-dev"
+;; If not working, try to invoke from cmdline to debug
 (after! browse-url
  (unless (version< emacs-version "28.2")
      (add-to-list 'browse-url-handlers '("." . browse-url-default-browser))))
