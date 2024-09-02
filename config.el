@@ -120,7 +120,12 @@
 
 ;; C#
 (setq auto-mode-alist (append '(("\\.xaml$" . nxml-mode)) auto-mode-alist))
-(setq auto-mode-alist (append '(("\\.jobdsl$" . groovy-mode)) auto-mode-alist))
+(setq auto-mode-alist
+      (append '(("\\.jobdsl\\'" . groovy-mode)
+                ("\\.groovy\\'" . groovy-mode)
+                ("\\.jenkinsfile\\'" . groovy-mode))
+              auto-mode-alist))
+
 (add-to-list 'projectile-other-file-alist '("xaml.cs" "xaml" "cs"))
 (add-to-list 'projectile-other-file-alist '("xaml" "cs" "xaml.cs"))
 (add-to-list 'projectile-other-file-alist '("cs" "xaml.cs" "xaml"))
